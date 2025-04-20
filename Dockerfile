@@ -31,6 +31,42 @@ WORKDIR /FramePack
 RUN source /venv/bin/activate && \
     pip3 install --upgrade pip && \
     pip3 install --no-cache-dir -r requirements.txt && \
+    pip3 install huggingface_hub && \
+    deactivate
+
+# Install models
+RUN source /venv/bin/activate && \
+    huggingface-cli download hunyuanvideo-community/HunyuanVideo \
+      --subfolder text_encoder \
+      --local-dir pretrained_models/HunyuanVideo \
+      --local-dir-use-symlinks False && \
+    huggingface-cli download hunyuanvideo-community/HunyuanVideo \
+      --subfolder text_encoder_2 \
+      --local-dir pretrained_models/HunyuanVideo \
+      --local-dir-use-symlinks False && \
+    huggingface-cli download hunyuanvideo-community/HunyuanVideo \
+      --subfolder tokenizer \
+      --local-dir pretrained_models/HunyuanVideo \
+      --local-dir-use-symlinks False && \
+    huggingface-cli download hunyuanvideo-community/HunyuanVideo \
+      --subfolder tokenizer_2 \
+      --local-dir pretrained_models/HunyuanVideo \
+      --local-dir-use-symlinks False && \
+    huggingface-cli download hunyuanvideo-community/HunyuanVideo \
+      --subfolder vae \
+      --local-dir pretrained_models/HunyuanVideo \
+      --local-dir-use-symlinks False && \
+    huggingface-cli download lllyasviel/flux_redux_bfl \
+      --subfolder feature_extractor \
+      --local-dir pretrained_models/flux_redux_bfl \
+      --local-dir-use-symlinks False && \
+    huggingface-cli download lllyasviel/flux_redux_bfl \
+      --subfolder image_encoder \
+      --local-dir pretrained_models/flux_redux_bfl \
+      --local-dir-use-symlinks False && \
+    huggingface-cli download lllyasviel/FramePackI2V_HY \
+      --local-dir pretrained_models/FramePackI2V_HY \
+      --local-dir-use-symlinks False && \
     deactivate
 
 # Remove existing SSH host keys
