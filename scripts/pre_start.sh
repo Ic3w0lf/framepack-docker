@@ -122,7 +122,7 @@ sync_apps() {
 
 if [ "$(printf '%s\n' "$EXISTING_VERSION" "$TEMPLATE_VERSION" | sort -V | head -n 1)" = "$EXISTING_VERSION" ]; then
     if [ "$EXISTING_VERSION" != "$TEMPLATE_VERSION" ]; then
-        sync_apps
+        #sync_apps
         fix_venvs
         link_models
 
