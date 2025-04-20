@@ -9,56 +9,41 @@ def download_models():
     os.makedirs("pretrained_models/flux_redux_bfl", exist_ok=True)
     os.makedirs("pretrained_models/FramePackI2V_HY", exist_ok=True)
 
-    # Download HunyuanVideo subfolders
-    snapshot_download(
+    # For HunyuanVideo
+    # First download the entire repo
+    full_repo = snapshot_download(
         repo_id="hunyuanvideo-community/HunyuanVideo",
-        subfolder="text_encoder",
-        local_dir="pretrained_models/HunyuanVideo/text_encoder",
+        local_dir="pretrained_models/HunyuanVideo_full",
         local_dir_use_symlinks=False
     )
 
-    snapshot_download(
-        repo_id="hunyuanvideo-community/HunyuanVideo",
-        subfolder="text_encoder_2",
-        local_dir="pretrained_models/HunyuanVideo/text_encoder_2",
-        local_dir_use_symlinks=False
-    )
+    # Then move the needed subfolders
+    subfolders = ["text_encoder", "text_encoder_2", "tokenizer", "tokenizer_2", "vae"]
+    for subfolder in subfolders:
+        source_path = os.path.join("pretrained_models/HunyuanVideo_full", subfolder)
+        target_path = os.path.join("pretrained_models/HunyuanVideo", subfolder)
 
-    snapshot_download(
-        repo_id="hunyuanvideo-community/HunyuanVideo",
-        subfolder="tokenizer",
-        local_dir="pretrained_models/HunyuanVideo/tokenizer",
-        local_dir_use_symlinks=False
-    )
+        # Move the directory if it exists
+        if os.path.exists(source_path):
+            os.system(f"mv {source_path} {target_path}")
 
-    snapshot_download(
-        repo_id="hunyuanvideo-community/HunyuanVideo",
-        subfolder="tokenizer_2",
-        local_dir="pretrained_models/HunyuanVideo/tokenizer_2",
-        local_dir_use_symlinks=False
-    )
-
-    snapshot_download(
-        repo_id="hunyuanvideo-community/HunyuanVideo",
-        subfolder="vae",
-        local_dir="pretrained_models/HunyuanVideo/vae",
-        local_dir_use_symlinks=False
-    )
-
-    # Download flux_redux_bfl subfolders
-    snapshot_download(
+    # For flux_redux_bfl
+    # First download the entire repo
+    full_repo = snapshot_download(
         repo_id="lllyasviel/flux_redux_bfl",
-        subfolder="feature_extractor",
-        local_dir="pretrained_models/flux_redux_bfl/feature_extractor",
+        local_dir="pretrained_models/flux_redux_bfl_full",
         local_dir_use_symlinks=False
     )
 
-    snapshot_download(
-        repo_id="lllyasviel/flux_redux_bfl",
-        subfolder="image_encoder",
-        local_dir="pretrained_models/flux_redux_bfl/image_encoder",
-        local_dir_use_symlinks=False
-    )
+    # Then move the needed subfolders
+    subfolders = ["feature_extractor", "image_encoder"]
+    for subfolder in subfolders:
+        source_path = os.path.join("pretrained_models/flux_redux_bfl_full", subfolder)
+        target_path = os.path.join("pretrained_models/flux_redux_bfl", subfolder)
+
+        # Move the directory if it exists
+        if os.path.exists(source_path):
+            os.system(f"mv {source_path} {target_path}")
 
     # Download FramePackI2V_HY model
     snapshot_download(
@@ -66,6 +51,14 @@ def download_models():
         local_dir="pretrained_models/FramePackI2V_HY",
         local_dir_use_symlinks=False
     )
+
+    # Delete the remaining files in the temporary directories
+    os.system("rm -rf pretrained_models/HunyuanVideo_full")
+    os.system("rm -rf pretrained_models/flux_redux_bfl_full")
+
+    # Clean up any other temporary files that might have been created
+    os.system("find pretrained_models -type f -name '*.lock' -delete")
+    os.system("find pretrained_models -type f -name '.gitattributes' -delete")
 
     print("All models downloaded successfully!")
 
