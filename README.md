@@ -8,7 +8,7 @@
 
 * Ubuntu 22.04 LTS
 * CUDA 12.1
-* Python 3.12.9
+* Python 3.10.12
 * [FramePack](
   https://github.com/lllyasviel/FramePack)
 * Torch 2.5.1
