@@ -31,6 +31,7 @@ WORKDIR /FramePack
 RUN source /venv/bin/activate && \
     pip3 install --upgrade pip && \
     pip3 install --no-cache-dir -r requirements.txt && \
+    pip3 install --no-cache-dir gradio==5.25.2 && \
     deactivate
 
 # Install models
