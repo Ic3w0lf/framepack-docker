@@ -120,20 +120,20 @@ sync_apps() {
     fi
 }
 
-if [ "$(printf '%s\n' "$EXISTING_VERSION" "$TEMPLATE_VERSION" | sort -V | head -n 1)" = "$EXISTING_VERSION" ]; then
-    if [ "$EXISTING_VERSION" != "$TEMPLATE_VERSION" ]; then
-        #sync_apps
-        #fix_venvs
-        #link_models
-
-        # Create logs directory
-        #mkdir -p /workspace/logs
-    else
-        echo "SYNC: Existing version is the same as the template version, no syncing required."
-    fi
-else
-    echo "SYNC: Existing version is newer than the template version, not syncing!"
-fi
+#if [ "$(printf '%s\n' "$EXISTING_VERSION" "$TEMPLATE_VERSION" | sort -V | head -n 1)" = "$EXISTING_VERSION" ]; then
+#    if [ "$EXISTING_VERSION" != "$TEMPLATE_VERSION" ]; then
+#        sync_apps
+#        fix_venvs
+#        link_models
+#
+#         Create logs directory
+#        mkdir -p /workspace/logs
+#    else
+#        echo "SYNC: Existing version is the same as the template version, no syncing required."
+#    fi
+#else
+#    echo "SYNC: Existing version is newer than the template version, not syncing!"
+#fi
 
 if [[ ${DISABLE_AUTOLAUNCH} ]]
 then
