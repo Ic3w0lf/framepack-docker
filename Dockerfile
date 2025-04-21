@@ -35,6 +35,7 @@ RUN source /venv/bin/activate && \
 
 # Install models
 COPY --chmod=755 build/download_models.py ./
+ENV HF_HOME="/FramePack/hf_download"
 RUN source /venv/bin/activate && \
     pip3 install huggingface_hub && \
     python3 /FramePack/download_models.py && \

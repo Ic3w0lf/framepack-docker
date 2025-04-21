@@ -2,30 +2,44 @@
 import os
 from huggingface_hub import snapshot_download
 
+
 def download_models():
-    # Download HunyuanVideo without specifying local_dir
-    print("Downloading HunyuanVideo...")
-    snapshot_download(
+    # Define the specific subfolders for HunyuanVideo
+    hunyuanvideo_subfolders = [
+        "text_encoder/*",
+        "text_encoder_2/*",
+        "tokenizer/*",
+        "tokenizer_2/*",
+        "vae/*"
+    ]
+
+    # Download HunyuanVideo components
+    hunyuanvideo_path = snapshot_download(
         repo_id="hunyuanvideo-community/HunyuanVideo",
-        local_dir_use_symlinks=False
+        allow_patterns=hunyuanvideo_subfolders,
+        repo_type="model"
     )
+    print(f"Downloaded HunyuanVideo components to: {hunyuanvideo_path}")
 
-    # Download flux_redux_bfl
-    print("Downloading flux_redux_bfl...")
-    snapshot_download(
+    # Download flux_redux_bfl components
+    flux_redux_subfolders = [
+        "feature_extractor/*",
+        "image_encoder/*"
+    ]
+
+    flux_redux_path = snapshot_download(
         repo_id="lllyasviel/flux_redux_bfl",
-        local_dir_use_symlinks=False
+        allow_patterns=flux_redux_subfolders,
+        repo_type="model"
     )
+    print(f"Downloaded flux_redux_bfl components to: {flux_redux_path}")
 
-    # Download FramePackI2V_HY model
-    print("Downloading FramePackI2V_HY...")
-    snapshot_download(
+    # Download FramePackI2V_HY components
+    framepacked_path = snapshot_download(
         repo_id="lllyasviel/FramePackI2V_HY",
-        local_dir_use_symlinks=False
+        repo_type="model"
     )
-
-    print("All models downloaded successfully!")
-
+    print(f"Downloaded FramePackI2V_HY to: {framepacked_path}")
 
 if __name__ == '__main__':
     download_models()
