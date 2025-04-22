@@ -22,7 +22,7 @@ RUN source /venv/bin/activate && \
 
 # Clone the git repo of FramePack and set version
 ARG FRAMEPACK_COMMIT
-RUN git clone https://github.com/lllyasviel/FramePack.git && \
+RUN git clone https://github.com/ashleykleynhans/FramePack.git && \
     cd /FramePack && \
     git checkout ${FRAMEPACK_COMMIT}
 

@@ -46,6 +46,6 @@ target "default" {
         INDEX_URL = "https://download.pytorch.org/whl/cu${CU_VERSION}"
         TORCH_VERSION = "${TORCH_VERSION}+cu${CU_VERSION}"
         XFORMERS_VERSION = "0.0.29.post1"
-        FRAMEPACK_COMMIT = "e2844dfee5d8ca31e9934072cae0092e04c3f243"
+        FRAMEPACK_COMMIT = "a8ddee9d16ed670c382094e801ec63c9585ed708"
     }
 }
