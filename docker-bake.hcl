@@ -3,10 +3,10 @@ variable "REGISTRY" {
 }
 
 variable "REGISTRY_USER" {
-    default = "ashleykza"
+    default = "1c3w0lf"
 }
 variable "APP" {
-    default = "framepack"
+    default = "framepack-studio"
 }
 
 variable "RELEASE" {
@@ -46,6 +46,6 @@ target "default" {
         INDEX_URL = "https://download.pytorch.org/whl/cu${CU_VERSION}"
         TORCH_VERSION = "${TORCH_VERSION}+cu${CU_VERSION}"
         XFORMERS_VERSION = "0.0.29.post1"
-        FRAMEPACK_COMMIT = "a8ddee9d16ed670c382094e801ec63c9585ed708"
+        FRAMEPACK_STUDIO_COMMIT = "9b3c9084aeb54c33f515af93fb05b668a2efe03f"
     }
 }

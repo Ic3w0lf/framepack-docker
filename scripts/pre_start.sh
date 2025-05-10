@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 export PYTHONUNBUFFERED=1
-export APP="FramePack"
+export APP="FramePack-Studio"
 
-TEMPLATE_NAME="framepack"
+TEMPLATE_NAME="framepack-studio"
 TEMPLATE_VERSION_FILE="/workspace/${APP}/template.json"
 
 echo "TEMPLATE NAME: ${TEMPLATE_NAME}"

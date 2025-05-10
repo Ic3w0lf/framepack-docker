@@ -21,13 +21,13 @@ RUN source /venv/bin/activate && \
     deactivate
 
 # Clone the git repo of FramePack and set version
-ARG FRAMEPACK_COMMIT
-RUN git clone https://github.com/ashleykleynhans/FramePack.git && \
-    cd /FramePack && \
-    git checkout ${FRAMEPACK_COMMIT}
+ARG FRAMEPACK_STUDIO_COMMIT
+RUN git clone https://github.com/colinurbs/FramePack-Studio.git && \
+    cd /FramePack-Studio && \
+    git checkout ${FRAMEPACK_STUDIO_COMMIT}
 
 # Install the dependencies for FramePack
-WORKDIR /FramePack
+WORKDIR /FramePack-Studio
 RUN source /venv/bin/activate && \
     pip3 install --upgrade pip && \
     pip3 install --no-cache-dir -r requirements.txt && \
@@ -36,10 +36,10 @@ RUN source /venv/bin/activate && \
 
 # Install models
 COPY --chmod=755 build/download_models.py ./
-ENV HF_HOME="/FramePack/hf_download"
+ENV HF_HOME="/FramePack-Studio/hf_download"
 RUN source /venv/bin/activate && \
     pip3 install huggingface_hub && \
-    python3 /FramePack/download_models.py && \
+    python3 /FramePack-Studio/download_models.py && \
     deactivate
 
 # Remove existing SSH host keys

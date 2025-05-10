@@ -41,5 +41,12 @@ def download_models():
     )
     print(f"Downloaded FramePackI2V_HY to: {framepacked_path}")
 
+    # Download FramePackI2V_F1_HY components
+    framepacked_path = snapshot_download(
+        repo_id="lllyasviel/FramePack_F1_I2V_HY_20250503",
+        repo_type="model"
+    )
+    print(f"Downloaded FramePackI2V_F1_HY to: {framepacked_path}")
+
 if __name__ == '__main__':
     download_models()

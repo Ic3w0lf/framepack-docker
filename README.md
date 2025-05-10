@@ -44,7 +44,7 @@ to launch it on RunPod.
 
 ```bash
 # Clone the repo
-git clone https://github.com/ashleykleynhans/framepack-docker.git
+git clone https://github.com/1c3w0lf/framepack-docker.git
 
 # Log in to Docker Hub
 docker login
